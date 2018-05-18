@@ -14,11 +14,11 @@
 
     <!-- Printing and PDF exports -->
     <script>
-      var link = document.createElement('link')
-      link.rel = 'stylesheet'
-      link.type = 'text/css'
-      link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css'
-      document.getElementsByTagName('head')[0].appendChild(link)
+        var link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.type = 'text/css'
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css'
+        document.getElementsByTagName('head')[0].appendChild(link)
     </script>
 </head>
 <body>
@@ -27,21 +27,27 @@
         <section>
             <h2>Continuous Deployment</h2>
             <p>Qué, por qué, cómo?</p>
-            <p><small>ToDo</small></p>
-            <small>
-                <ul>
-                    <li>Pictures</li>
-                    <li>speaker notes</li>
-                    <li>Imagen de continuous X</li>
-                    <li>Ejemplo (prueba base de datos, prueba de servicio entero, deploy, )</li>
-                    <li>Como hay que proceder pasos más exactos y avisos de próximos meetups</li>
-                    <li>key words at the bottom of the slide</li>
-                </ul>
-            </small>
+            <p>
+                <small>ToDo</small>
+            </p>
+            <footer>
+                <small>
+                    <ul>
+                        <li>Pictures</li>
+                        <li>speaker notes</li>
+                        <li>Imagen de continuous X</li>
+                        <li>Ejemplo (prueba base de datos, prueba de servicio entero, deploy, )</li>
+                        <li>Como hay que proceder pasos más exactos y avisos de próximos meetups</li>
+                        <li>key words at the bottom of the slide</li>
+                    </ul>
+                </small>
+            </footer>
             <aside class="notes">
-                <p>Bienvenidos con todos. Les invito a que me acompañen a ver de qu¿e se trata cuando la gente habla de Continuous deployment.
+                <p>Bienvenidos con todos. Les invito a que me acompañen a ver de qu¿e se trata cuando la gente habla de
+                    Continuous deployment.
                     Si todo va bien al fin de esta noche les habré dado una idea de las tres preguntas que ven aquí.</p>
-                <p>Pero primero quiero que cada uno me diga 3 palabras sobre qué es su conocimiento previo en programación y
+                <p>Pero primero quiero que cada uno me diga 3 palabras sobre qué es su conocimiento previo en
+                    programación y
                     su expectativa de esta charla para tener una idea de qué será lo más interesante para uds.</p>
             </aside>
         </section>
@@ -63,13 +69,18 @@
                 <p class="fragment">
                     <small>Continuous deployment es demasiado importante para perderselo</small>
                 </p>
+                <p class="fragment highlight-blue">
+                    <small>@WhiteHatTux</small>
+                </p>
             </section>
         </section>
         <section>
             <h2>Tabla de contenidos</h2>
             <ol>
                 <li>Qué es Continuous Deployment?</li>
-                <aside class="notes">Vamos a hablar de un poco de teoría y después ver un ejemplo de Continuous Deployment en acción</aside>
+                <aside class="notes">Vamos a hablar de un poco de teoría y después ver un ejemplo de Continuous
+                    Deployment en acción
+                </aside>
                 <li>Realidad</li>
                 <li>Por qué hacemos todo esto?</li>
                 <li>Cómo hay que proceder?</li>
@@ -83,12 +94,14 @@
                 <p>Va después de <span class="fragment highlight-blue">Continuous Build</span></p>
             </section>
             <section><h2>Insertar imagen de separación entre continuous X</h2></section>
-            <section><h2>Instalar cualquier cambio al códio a producción</h2>
+            <section><h2>Es aplicar cualquier cambio en produccion</h2>
                 <ul>
-                    <li>Sin pruebas manuales</li>
-                    <li>Sin tener acceso al servidor de producción</li>
-                    <li>Sin tocar la base de datos para migraciones</li>
-                    <li class="fragment">Sin romper producción</li>
+                    <li>Nuevos features</li>
+                    <li>Cambios de configuración</li>
+                    <li>Correcciones de errores</li>
+                    <li>Experimentos</li>
+                    <li>De forma <span class="fragment highlight-blue">segura</span> y <span
+                            class="fragment highlight-blue">rápida</span></li>
                 </ul>
             </section>
             <section>
@@ -96,7 +109,8 @@
                     <normal class="fragment">action!</normal>
                 </h2>
                 <small class="fragment">Veamos la realidad</small>
-                <aside class="notes">Les voy a mostrar un ejemplo real de la teoría que les hablo y quiero que reconozcan las siguientes etapas
+                <aside class="notes">Les voy a mostrar un ejemplo real de la teoría que les hablo. Y después analisamos
+                    lo visto
                 </aside>
             </section>
 
@@ -106,15 +120,13 @@
             <section><h2>Qué pasó ahí?</h2></section>
             <section>
                 <h3>Fases de continuous Deployment</h3>
-                <small>
-                    <ol class="fragmented">
-                        <li>Cambio en el código</li>
-                        <li class="fragment">Compilación y pruebas unitarias</li>
-                        <li class="fragment">Comprobar que los cambios a la base de datos funcionan</li>
-                        <li class="fragment">Pruebas de servicio entero</li>
-                        <li class="fragment">Instalar en producción</li>
-                        <li class="fragment">Prueba mínima que la instalación en producción fue exitosa</li>
-                    </ol>
+                <ol class="fragmented">
+                    <li>Cambio en el código</li>
+                    <li class="fragment">Compilación y pruebas unitarias</li>
+                    <li class="fragment">Pruebas de servicio entero</li>
+                    <li class="fragment">Instalación en producción</li>
+                    <li class="fragment">Prueba mínima que la instalación en producción fue exitosa</li>
+                </ol>
                 </small>
             </section>
         </section>
@@ -143,12 +155,16 @@
                 </small>
                 <aside class="notes"></aside>
             </section>
-            <section><p>Mejorar el "feedback loop"</p>
-                <small>El tiempo que tarda un error de que lo escriba hasta saber que he escrito un error</small>
-                <p>Mejorar el "Time to market"</p>
+            <section><p>Bajar el riesgo de cada instalación</p>
+                <small>Si instalar es lo más normal del mundo es más probable que nos salga bien</small>
+                <p>Mejorar el <span class="fragment highlight-green">"feedback loop"</span></p>
+                <small>El tiempo que tarda un error desde que lo escriba hasta saber que he escrito un error</small>
+                <p>Mejorar el <span class="fragment highlight-green">"Time to market"</span></p>
                 <small>Tiempo que necesita un cambio desde su pedido hasta su disponibilidad para el cliente</small>
                 <p>Mejorar la calidad del código</p>
-                <small>Por el simple hecho de saber que cualquier linea de código va directo a producción producimos código de mayor calidad</small>
+                <small>Instalando las herramientas nos damos cuenta mucho más rápido que hay una falla y
+                    encima nos damos cuenta cuando hay una parte del código que no está cubierta por pruebas
+                </small>
             </section>
         </section>
         <section>
@@ -161,37 +177,93 @@
                     <li>Porque el software que tenemos no se deja instalar de forma automática</li>
                 </ul>
             </section>
-            <section>De hecho es algo que casi siempre se decide al momento de empezar el proyecto
-                <p>Es bien complicado aplicarlo cuando un proyecto ya está en marcha</p></section>
+            <!--<section>De hecho es algo que casi siempre se decide al momento de empezar el proyecto
+                <p>Es bien complicado aplicarlo cuando un proyecto ya está en marcha</p></section>-->
         </section>
         <section>
             <section><h2>Cómo hay que proceder?</h2></section>
+            <section><h2>Sistema de control de versiones</h2>
+                <p>Sugerido es git</p>
+                <p class="fragment">De hecho no es solo sugerido</p>
+                <p class="fragment"><span class="fragment highlight-red">Es obligatorio!</span></p>
+                <p class="fragment">Casi siempre va con github/gitlab/bitbucket</p>
+                <p class="fragment">Algunos ofrecen repositorios privados or premium para esudiantes</p>
+            </section>
             <section><h2>Verificar pruebas del código</h2>
                 <ul>
                     <li>Sin pruebas no hacemos nada</li>
                     <li>Se puede ejecutar de forma automática?</li>
                     <li>Se puede analizar el resultado de las pruebas?</li>
-                    <li>Qué tan grande es la cobertura del código con pruebas?</li>
+                    <li>Qué tan grande es la <a href="https://www.eclemma.org/jacoco/">cobertura</a> del código con
+                        pruebas?
+                    </li>
+                </ul>
+            </section>
+            <section><h2>Usar analysis de codigo estático y dinámico</h2>
+                <ul>
+                    <li>Así entendemos más el código y lo que nos esconde</li>
+                    <li>lint</li>
+                    <li>checkstyle/pmd/findbugs</li>
+                    <li><a href="https://www.sonarsource.com/">Sonarqube</a></li>
+                </ul>
+            </section>
+            <section><h2>Setup <span class="fragment highlight-blue">Continuous Integration server</span></h2>
+                <ul>
+                    <li>Que entorno necesita el programa para compilar</li>
+                    <aside class="notes">Script para entorno, no manualmente</aside>
+                    <li>Crear Jenkinsfile o .travis.yml para setup del entorno y compilación</li>
+                    <li>Jenkinsfile or .travis.yml van con el código y permiten evolucionar con él</li>
+                </ul>
+            </section>
+            <section><h2>Aplicar <span class="fragment highlight-blue">configuration as code</span></h2>
+                <ul>
+                    <li>Permite versionar y manejar de forma automática todos los cambios</li>
+                    <li>y accesos</li>
+                    <li>Junto con "configuration as code" va <span class="fragment highlight-blue">configuration management</span>
+                    </li>
+                    <li>Por ejemplo <a href="https://www.consul.io/">consul</a> o <a href="https://coreos.com/etcd/">etcd</a> </li>
                 </ul>
             </section>
         </section>
         <section>
-            <section><h2>Aquí está la lista de lo que no he hablado (suficiente)</h2></section>
+            <section><h2>Lo que no he hablado (suficiente)</h2></section>
             <section>
                 <ul>
                     <li>Jenkinsfile</li>
                     <li>liquibase</li>
                     <li>docker (compose/swarm)</li>
-                    <li>rollback</li>
+                    <li>Rollback</li>
                     <li>Logging</li>
+                    <li>Scalability</li>
                     <li>Monitoring</li>
-                    <li>Notificaciones</li>
+                    <li>Notifications</li>
                     <li>Pull-Request review</li>
                     <li>Tipos de pruebas</li>
+                    <li>Feature toggles</li>
+                    <li>buen configuration management</li>
                 </ul>
             </section>
         </section>
-        <section><h1>Gracias</h1><h3>Es tiempo de preguntas. :-)</h3></section>
+        <section><h1>Gracias</h1>
+            <h3>Es tiempo de preguntas. :-)</h3></section>
+        <section>
+            <section><h2>Fuentes</h2></section>
+            <section><h2>Continuous delivery</h2>
+                <p><a href="https://continuousdelivery.com">
+                    Continuous delivery by Jez Humble</a></p>
+                <p><a href="https://martinfowler.com/tags/continuous%20delivery.html">
+                    https://martinfowler.com/tags/continuous%20delivery.html</a></p>
+                <p><a href="https://jenkins.io/doc/pipeline/tour/deployment/">
+                    https://jenkins.io/doc/pipeline/tour/deployment/</a></p>
+            </section>
+            <section><h2>Software</h2>
+                <p><a href="https://jenkins.io/">Jenkins</a></p>
+                <p><a href="http://docker.com/">Docker</a></p>
+                <p><a href="https://projects.spring.io/spring-boot/">Spring Boot</a></p>
+                <p><a href="https://junit.org/junit4/">JUnit</a></p>
+            </section>
+
+        </section>
     </div>
 </div>
 
@@ -199,21 +271,25 @@
 <script src="js/reveal.js"></script>
 
 <script>
-  // More info about config & dependencies:
-  // - https://github.com/hakimel/reveal.js#configuration
-  // - https://github.com/hakimel/reveal.js#dependencies
-  Reveal.initialize({
-    dependencies: [
-      {src: 'plugin/markdown/marked.js'},
-      {src: 'plugin/markdown/markdown.js'},
-      {src: 'plugin/notes/notes.js', async: true},
-      {src: 'plugin/highlight/highlight.js', async: true, callback: function () { hljs.initHighlightingOnLoad() }}
-    ]
-  })
-  Reveal.configure({
-    slideNumber: 'c/t'
+    // More info about config & dependencies:
+    // - https://github.com/hakimel/reveal.js#configuration
+    // - https://github.com/hakimel/reveal.js#dependencies
+    Reveal.initialize({
+        dependencies: [
+            {src: 'plugin/markdown/marked.js'},
+            {src: 'plugin/markdown/markdown.js'},
+            {src: 'plugin/notes/notes.js', async: true},
+            {
+                src: 'plugin/highlight/highlight.js', async: true, callback: function () {
+                    hljs.initHighlightingOnLoad()
+                }
+            }
+        ]
+    })
+    Reveal.configure({
+        slideNumber: 'c/t'
 
-  })
+    })
 </script>
 </body>
 </html>

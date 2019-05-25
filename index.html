@@ -24,183 +24,180 @@
 <body>
 <div class="reveal">
     <div class='footer'>
-        Christopher Timm - christopher@timmch.de - @WhiteHatTux
+        Christopher Timm - ct@contimm.de - @WhiteHatTux
     </div>
     <div class="slides">
         <section>
             <h2>Continuous Deployment</h2>
-            <p>Qué, por qué, cómo?</p>
+            <p>Was, warum, wie?</p>
             <aside class="notes">
-                <p>Bienvenidos con todos. Les invito a que me acompañen a ver de qu¿e se trata cuando la gente habla de
-                    Continuous deployment.
-                    Si todo va bien al fin de esta noche les habré dado una idea de las tres preguntas que ven aquí.</p>
-                <p>Pero primero quiero que cada uno me diga 3 palabras sobre qué es su conocimiento previo en
-                    programación y
-                    su expectativa de esta charla para tener una idea de qué será lo más interesante para uds.</p>
+                <p>Herzlich Willkommen. Ich lade Sie ein mich in einer Vorstellung zu begleiten, was die leute meinen,
+                    wenn sie von Continuous Deployment sprechen.
+                    Wenn alles gut geht, haben Sie am Ende dieser Vorlesung grobe Antworten auf diese drei Fragen</p>
+                <p>Aber zunächst habe ich zwei Fragen:
+                    Wer hier hat schonmal Software in Produktion gebracht? (Mods für Spiele, die von Freunden genutzt werden/Backend/Frontend/)
+                    Hat hier jemand schon eine grobe Vorstellung davon, was Continuous Deployment ist?
+                </p>
             </aside>
         </section>
         <section>
-            <h2>Tabla de contenidos</h2>
+            <h2>Inhalt</h2>
             <ol>
-                <li>Qué es Continuous Deployment?</li>
-                <aside class="notes">Vamos a hablar de un poco de teoría y después ver un ejemplo de Continuous
-                    Deployment en acción
+                <li>Was ist Continuous Deployment?</li>
+                <aside class="notes">Wir reden erst ein wenig von Theorie und dann schauen wir uns mal ein Beispiel von Continuous Deployment an
                 </aside>
-                <li>Realidad</li>
-                <li>Por qué hacemos todo esto?</li>
-                <li>Cómo hay que proceder?</li>
-                <li>Preguntas!</li>
+                <li>Wie sieht sowas in der Realität aus</li>
+                <li>Warum machen wir das alles?</li>
+                <li>Wie sollte ich bei sowas vorgehen?</li>
+                <li>Fragen!</li>
             </ol>
         </section>
         <section>
-            <section><h2>Qué es Continuous Deployment?</h2></section>
-            <section><p>Primero va <span class="fragment highlight-blue">Continuous Build</span></p>
-                <p>Después de <span class="fragment highlight-blue">Continuous Integration</span></p>
-                <p>Después de <span class="fragment highlight-blue">Continuous Delivery</span></p>
+            <section><h2>Was ist Continuous Deployment?</h2></section>
+            <section><p>Zuerst kommt <span class="fragment highlight-blue">Continuous Build</span></p>
+                <p>Danach kommt <span class="fragment highlight-blue">Continuous Integration</span></p>
+                <p>Danach kommt <span class="fragment highlight-blue">Continuous Delivery</span></p>
+                <span class="fragment"><p>Danach kommt <span class="fragment highlight-blue">Continuous Deployment</span></p></span>
             </section>
             <section><img width="700" data-src="images/continuous-x.png" alt="diferencia de continuous integration, delivery, deployment"></section>
-            <section><h2>Es aplicar cualquier cambio en produccion</h2>
+            <section><h2>Es geht darum jede Änderung in Produktion zu bringen</h2>
                 <ul>
-                    <li>Nuevos features</li>
-                    <li>Cambios de configuración</li>
-                    <li>Correcciones de errores</li>
-                    <li>Experimentos</li>
-                    <li>De forma <span class="fragment highlight-blue">segura</span> y <span
-                            class="fragment highlight-blue">rápida</span></li>
+                    <li>Neue Features</li>
+                    <li>Konfigurationsänderungen</li>
+                    <li>Fehlerbehebungen/bugs</li>
+                    <li>Experimente</li>
+                    <li><span class="fragment highlight-blue">sicher</span> y <span
+                            class="fragment highlight-blue">schnell</span></li>
                 </ul>
             </section>
             <section>
                 <h2>Talk is cheap! Show me the
                     <normal class="fragment">action!</normal>
                 </h2>
-                <small class="fragment">Veamos la realidad</small>
-                <aside class="notes">Les voy a mostrar un ejemplo real de la teoría que les hablo. Y después analisamos
-                    lo visto
+                <small class="fragment">Schauen wir uns das mal in der Realität an</small>
+                <aside class="notes">Danach schauen wir uns an, was da genau passiert ist.
                 </aside>
             </section>
 
 
         </section>
         <section>
-            <section><h2>Qué pasó ahí?</h2></section>
+            <section><h2>Was ist passiert?</h2></section>
             <section>
-                <h3>Fases de continuous Deployment</h3>
+                <h3>Phasen von continuous Deployment</h3>
                 <ol class="fragmented">
-                    <li>Cambio en el código</li>
-                    <li class="fragment">Compilación y pruebas unitarias</li>
-                    <li class="fragment">Pruebas de servicio entero</li>
-                    <li class="fragment">Instalación en producción</li>
-                    <li class="fragment">Prueba mínima que la instalación en producción fue exitosa</li>
+                    <li>Code Änderung</li>
+                    <li class="fragment">Kompilieren und unit tests ausführen</li>
+                    <li class="fragment">Integrationstests des gesamten Services</li>
+                    <li class="fragment">Installation in Produktion</li>
+                    <li class="fragment">Smoke Test</li>
                 </ol>
                 </small>
             </section>
         </section>
         <section>
-            <section><h2>Por qué hacemos todo esto?</h2></section>
-            <section><h3>Presunciones - situación actual</h3>
+            <section><h2>Warum machen wir das alles?</h2></section>
+            <section><h3>Ein paar Annahmen über die aktuelle Situation</h3>
                 <small>
                     <ul>
-                        <li>Instalación es manual y lento</li>
-                        <li>Instalación es riesgosa, porque solo se instala cada año</li>
-                        <li>Nadie quiere tocar el servidor de producción</li>
-                        <li>Equipo de testing asegura calidad manualmente</li>
-                        <li>Negocio se mueve más rápido que el Software</li>
+                        <li>Installation ist manuell und langsam</li>
+                        <li>Installation ist risikoreich, weil sie nur einmal im Jahr stattfindet</li>
+                        <li>Niemand will den Produktionsserver anfassen</li>
+                        <li>Es gibt eine ganze Testabteilung, die manuell sicherstellt, dass der Code mehr oder weniger funktioniert</li>
+                        <li>Das Geschäft bewegt sich schneller, als die unterstützende Software</li>
                     </ul>
                 </small>
             </section>
-            <section><h2>Solución</h2>
+            <section><h2>Lösung</h2>
                 <small>
                     <ul>
-                        <li>Automaticemos</li>
-                        <li>Instalar no debería ser algo especial</li>
-                        <li>Hagamos rutina de la instalación</li>
-                        <li>Escribamos pruebas automáticas</li>
-                        <li>Instalemos nuevas funciones lo más rápido posible</li>
+                        <li><b>Autmatisieren</b></li>
+                        <li>Installation sollte nichts Besonderes sein</li>
+                        <li>Wir machen Installieren zur Routinearbeit</li>
+                        <li>Wir schreiben automatisierte Tests</li>
+                        <li>Wir bringen Änderungen so schnell wie möglich in Produktion</li>
                     </ul>
                 </small>
                 <aside class="notes"></aside>
             </section>
-            <section><p>Bajar el riesgo de cada instalación</p>
-                <small>Si instalar es lo más normal del mundo es más probable que nos salga bien</small>
-                <p>Mejorar el <span class="fragment highlight-blue">"feedback loop"</span></p>
-                <small>El tiempo que tarda un error desde que lo escriba hasta saber que he escrito un error</small>
-                <p>Mejorar el <span class="fragment highlight-blue">"Time to market"</span></p>
-                <small>Tiempo que necesita un cambio desde su pedido hasta su disponibilidad para el cliente</small>
-                <p>Mejorar la <span class="fragment highlight-blue">calidad del código</span></p>
-                <small>Instalando las herramientas nos damos cuenta mucho más rápido que hay una falla y
-                    encima nos damos cuenta cuando hay una parte del código que no está cubierta por pruebas
+            <section><p>Das Risiko einer einzelnen Installation minimieren</p>
+                <small>Wenn installieren das Normalste der Welt wird, wird es wahrscheinlich auch einfacher</small>
+                <p>Verbessern des: <span class="fragment highlight-blue">"feedback loop"</span></p>
+                <small>Die Zeit zwischen der Erstellung und Entdeckung eines Fehlers muss minimiert werden</small>
+                <p>Verbessern der: <span class="fragment highlight-blue">"Time to market"</span></p>
+                <small>Zeit, die benötigt wird, bis ein gewünschtes Feature für den Kunden verfügbar ist</small>
+                <p>Verbessern der <span class="fragment highlight-blue">Code Qualität</span></p>
+                <small>Mit den verfügbaren Tools erkennen wir schneller, wenn es einen Fehler gibt, und wenn ein Teil des Codes nicht mit Tests abgedeckt ist
                 </small>
             </section>
         </section>
         <section>
-            <section><h2>Por qué NO hacemos esto?</h2></section>
+            <section><h2>Warum sollten wir das NICHT machen?</h2></section>
             <section>
                 <ul>
-                    <li>Porque no tenemos suficiente pruebas automáticas</li>
-                    <li>Porque no tenemos la mentalidad de desarrollo agil</li>
-                    <li>Porque tenemos responsabilidades divididas</li>
-                    <li>Porque el software que tenemos no se deja instalar de forma automática</li>
+                    <li>Weil wir <b>noch</b> nicht genug automatisierte Tests haben</li>
+                    <li>Weil uns die agile Mentalität fehlt</li>
+                    <li>Weil die Verantwortungen zu weit auseinander gezogen sind</li>
+                    <li>Weil sich die Software einfach gar nicht automatisiert installieren lässt</li>
                 </ul>
             </section>
             <!--<section>De hecho es algo que casi siempre se decide al momento de empezar el proyecto
                 <p>Es bien complicado aplicarlo cuando un proyecto ya está en marcha</p></section>-->
         </section>
         <section>
-            <section><h2>Cómo hay que proceder?</h2></section>
-            <section><h2>Sistema de control de versiones</h2>
-                <p>De preferencia > git</p>
-                <p class="fragment">De hecho no es una sugerencia</p>
-                <p class="fragment"><span class="fragment highlight-red">Es obligatorio!</span></p>
-                <p class="fragment">Casi siempre se acompaña con github/gitlab/bitbucket</p>
-                <p class="fragment">Algunos ofrecen repositorios privados or premium para esudiantes</p>
+            <section><h2>Wie müssen wir vorgehen?</h2></section>
+            <section><h2>Versionskontrollsystem</h2>
+                <p>Vorzugsweise > git</p>
+                <p class="fragment">Um genau zu sein ist das nicht nur eine Empfehlung</p>
+                <p class="fragment"><span class="fragment highlight-red">Git ist Pflicht!</span></p>
+                <p class="fragment">git kommt fast immer zusammen mit github/gitlab/bitbucket</p>
+                <p class="fragment">Manche bieten kostenlose Repositories oder kostenlose Studentenaccounts an</p>
             </section>
-            <section><h2>Verificar pruebas del código</h2>
+            <section><h2>Den Tests auf den Zahn fühlen</h2>
                 <ul>
-                    <li>Sin pruebas no hacemos nada</li>
-                    <li>Se puede ejecutar de forma automática?</li>
-                    <li>Se puede analizar el resultado de las pruebas?</li>
-                    <li>Qué tan grande es la <a href="https://www.eclemma.org/jacoco/">cobertura</a> del código con
-                        pruebas?
+                    <li>Ohne Tests können wir das Ganze hier vergessen</li>
+                    <li>Können die tests automatisiert ausgeführt werden?</li>
+                    <li>Kann das Ergebnis der Tests schnell eingesehen werden?</li>
+                    <li>Wie hoch ist die Test <a href="https://www.eclemma.org/jacoco/">Coverage</a> des Codes?
                     </li>
                 </ul>
             </section>
-            <section><h2>Usar analysis de codigo estático y dinámico</h2>
+            <section><h2>Benutzung von statischer und dynamischer Code Analyse</h2>
                 <ul>
-                    <li>Así entendemos más el código y lo que nos esconde</li>
+                    <li>So verstehen wir den Code und seine dreckigen Geheimnisse besser</li>
                     <li>lint</li>
                     <li>checkstyle/pmd/findbugs</li>
-                    <li><a href="https://www.sonarsource.com/">Sonarqube</a></li>
+                    <li>Sonarqube</li>
                 </ul>
             </section>
             <section><h2>Setup <span class="fragment highlight-blue">Continuous Integration server</span></h2>
                 <ul>
-                    <li>Que entorno necesita el programa para compilar</li>
-                    <aside class="notes">Script para entorno, no manualmente</aside>
-                    <li>Crear Jenkinsfile o .travis.yml para setup del entorno y compilación</li>
-                    <li>Jenkinsfile or .travis.yml van con el código y permiten evolucionar con él</li>
+                    <li>Welche Umgebung braucht der Code zum kompilieren</li>
+                    <aside class="notes">Für die Einrichtung nutzen wir ein Skript, auf keinen Fall manuell</aside>
+                    <li>Die Ausführung sollte in einem Jenkinsfile oder .travis.yml beschrieben sein</li>
+                    <li>Jenkinsfile und .travis.yml liegen direkt beim Code und können sich mit dem Code entwickeln</li>
                 </ul>
             </section>
-            <section><h2>Aplicar <span class="fragment highlight-blue">configuration as code</span></h2>
+            <section><h2><span class="fragment highlight-blue">configuration as code</span></h2>
                 <ul>
-                    <li>Permite versionar y manejar de forma automática todos los cambios</li>
-                    <li>y accesos</li>
-                    <li>Junto con "configuration as code" va <span class="fragment highlight-blue">configuration management</span>
+                    <li>Erlaubt uns die Konfiguration zu versionieren und automatisch zu verwalten</li>
+                    <li>Zusammen mit "configuration as code" kommt oft <span class="fragment highlight-blue">configuration management</span>
                     </li>
-                    <li>Por ejemplo <a href="https://www.consul.io/">consul</a> o <a href="https://coreos.com/etcd/">etcd</a></li>
+                    <li>Zum Beispiel consul o etcd</li>
                 </ul>
             </section>
-            <section><h2>Acercarse más a producción cada día</h2>
+            <section><h2>Jeden Tag der Produktion ein wenig näher kommen</h2>
                 <ul>
-                    <li class="fragment">Primero instalar en un servidor de desarrollo</li>
-                    <li class="fragment">Después instalar en el servidor de pruebas</li>
-                    <li class="fragment">Usar activamente el sistema</li>
-                    <li class="fragment">Trabajar en la mentalidad de todos los usarios</li>
+                    <li class="fragment">Zunächst den Entwicklungsserver automatisiert bestücken</li>
+                    <li class="fragment">Danach den Testserver automatisiert bestücken</li>
+                    <li class="fragment">Das System aktiv nutzen</li>
+                    <li class="fragment">Im ganzen Team an der Mentalität arbeiten</li>
                     <li class="fragment"><span class="fragment highlight-blue">Agile mindset</span></li>
                 </ul>
             </section>
         </section>
         <section>
-            <section><h2>Lo que no he hablado (suficiente)</h2></section>
+            <section><h2>Wovon ich heute nicht (genug) geredet habe</h2></section>
             <section>
                 <ul>
                     <li>Jenkinsfile</li>
@@ -212,16 +209,16 @@
                     <li>Monitoring</li>
                     <li>Notifications</li>
                     <li>Pull-Request review</li>
-                    <li>Tipos de pruebas</li>
+                    <li>Verschiedene Testtypen (Test pyramide)</li>
                     <li>Feature toggles</li>
-                    <li>buen configuration management</li>
+                    <li>Gutes configuration management</li>
                 </ul>
             </section>
         </section>
-        <section><h1>Gracias</h1>
-            <h3>Es tiempo de preguntas. :-)</h3></section>
+        <section><h1>Danke</h1>
+            <h3>Gibt es Fragen?</h3></section>
         <section>
-            <section><h2>Fuentes</h2></section>
+            <section><h2>Quellen</h2></section>
             <section><h2>Continuous delivery</h2>
                 <p><a href="https://continuousdelivery.com">
                     Continuous delivery by Jez Humble</a></p>
@@ -229,12 +226,21 @@
                     https://martinfowler.com/tags/continuous%20delivery.html</a></p>
                 <p><a href="https://jenkins.io/doc/pipeline/tour/deployment/">
                     https://jenkins.io/doc/pipeline/tour/deployment/</a></p>
+                <p><a href="https://agilemanifesto.org/">Agile Manifesto</a> </p>
             </section>
             <section><h2>Software</h2>
                 <p><a href="https://jenkins.io/">Jenkins</a></p>
                 <p><a href="http://docker.com/">Docker</a></p>
                 <p><a href="https://projects.spring.io/spring-boot/">Spring Boot</a></p>
                 <p><a href="https://junit.org/junit4/">JUnit</a></p>
+                <p><a href="https://www.sonarsource.com/">Sonarqube</a></p>
+                <p><a href="https://www.consul.io/">consul</a></p>
+                <p><a href="https://coreos.com/etcd/">etcd</a></p>
+            </section>
+            <section>
+                <h2>Informative Videos</h2>
+                <p><a href="https://media.ccc.de/v/34c3-9095-antipatterns_und_missverstandnisse_in_der_softwareentwicklung#t=41">Fefe zu Antipattern</a> </p>
+                <p><a href="https://www.youtube.com/watch?v=4XpnKHJAok8">Linus Torvalds zu git</a> </p>
             </section>
 
         </section>
